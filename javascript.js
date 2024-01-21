@@ -3,6 +3,7 @@ document.getElementById('searchButton').addEventListener('click', function(e) {
     e.preventDefault();
     const searchBar = document.getElementById('searchBar');
     const searchString = searchBar.value.toLowerCase();
+    
 
     // Fetch data from your CSV file
     fetch('books.csv') 
@@ -16,6 +17,8 @@ document.getElementById('searchButton').addEventListener('click', function(e) {
             const filteredRows = rows.filter(row => row.toLowerCase().includes(searchString));
 
             
+
+           
             // Display filtered data
             const tableBody = document.querySelector('#bookTable tbody');
             tableBody.innerHTML = ''; // Clear previous results
@@ -59,8 +62,8 @@ document.getElementById('searchButton').addEventListener('click', function(e) {
                 tdTitle.appendChild(br1);
                 tdTitle.appendChild(span1);
                 
-                // Display ratings
-                
+                // Display ratings to work on later
+                /*
                 const br2 = document.createElement('br');
                 const span2 = document.createElement('span');
                 const  ratingsCount = item['ratings_count'];
@@ -69,10 +72,18 @@ document.getElementById('searchButton').addEventListener('click', function(e) {
                 }
                 tdTitle.appendChild(br2);
                 tdTitle.appendChild(span2);
+                */
                 
         
                 tableBody.appendChild(tr);
             });
+
+
+        
+
+        
+
         })
         .catch(error => console.error('Error:', error));
 });
+

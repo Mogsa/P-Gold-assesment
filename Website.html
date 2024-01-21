@@ -9,22 +9,35 @@
 </head>
 <body>
     <h1>Book Data</h1>
-    <table id="bookTable">
-        <tr>
-<th>Book ID</th>
-            <th>Title</th>
-            <th>Authors</th>
-            <th>Average Rating</th>
-            <th>ISBN</th>
-            <th>ISBN-13</th>
-            <th>Language Code</th>
-            <th>Num Pages</th>
-            <th>Ratings Count</th>
-            <th>Text Reviews Count</th>
-            <th>Publication Date</th>
-<th>Publisher</th>
-        </tr>
+    <table id="bookTable"  class="tableList">
+        <thead>
+            <tr>
+                <th scope="col">books </th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
     </table>
+    
+    
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">Dataset Search</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto"></ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" id="searchBar" placeholder="Search..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+   
+        
+    
+    
 
     <script src="javascript.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

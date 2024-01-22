@@ -1,4 +1,7 @@
 // JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Your code here...
+
 document.getElementById('searchButton').addEventListener('click', function(e) {
     e.preventDefault();
     const searchBar = document.getElementById('searchBar');
@@ -73,17 +76,88 @@ document.getElementById('searchButton').addEventListener('click', function(e) {
                 tdTitle.appendChild(br2);
                 tdTitle.appendChild(span2);
                 */
+
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'btn btn-primary';
+                button.dataset.toggle = 'modal';
+                button.dataset.target = '#Modal';
+                button.textContent = 'Open Modal';
+                tdTitle.appendChild(button);
+                
                 
         
                 tableBody.appendChild(tr);
+                
+                // event lisner for modal button
+                button.addEventListener('click', function() {
+                    var myModal = new bootstrap.Modal(document.getElementById('Modal'), {})
+                    
+
+                    //creat the title of the modal
+                    const modal = document.querySelector('#Modal');
+                    const modalTitle = modal.querySelector('.modal-dialog .modal-content .modal-header .modal-title');
+                    
+                    modalTitle.textContent = item['title'];
+
+
+                    //creat the image of the modal
+                    const isbn = item['isbn13'];
+                    const coverImage = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+                    const img = document.querySelector('.modal-dialog .modal-content .modal-body img');                    
+                    img.src = coverImage;//change image atribute
+                    //insert book title 
+                    const bookTitle = document.querySelector(' .modal-dialog .modal-content .container .row .col-sm h3');
+                    bookTitle.textContent = item['title'];
+                    
+                    //insert book author
+
+                    const bookAuthor = document.querySelector(' .modal-dialog .modal-content .container .row .col-sm .author');
+                    bookAuthor.textContent = item['authors'];
+
+                    //insert book description
+                    
+                    // function to get description using google books api (got from internet)
+                    function getBookByISBN(isbn) {
+                        fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.items) {
+                                    let book = data.items[0].volumeInfo;
+                                
+                                    // Insert the book description into the modal
+                                    const bookDescription = document.querySelector('#Modal .modal-dialog .modal-content .container .row .col-sm .description');
+                                    bookDescription.textContent = book.description;
+                                } else {
+                                    console.log('No results for this ISBN'); //console log error
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                    
+                    getBookByISBN(isbn);
+
+                    //insert book rating
+                    const bookRating = document.querySelector(' .modal-dialog .modal-content .container .row .col-sm .rating');
+                    bookRating.textContent = item['ratings_count'];
+
+
+
+                    myModal.show();
+                    
+        
+                    // https://openlibrary.org/isbn/${isbn}
+
+
+
+                });
+
             });
-
-
-        
-
-        
 
         })
         .catch(error => console.error('Error:', error));
 });
+
+});
+
 

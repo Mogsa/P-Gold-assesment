@@ -8,9 +8,8 @@
     <title>Book Data</title>
 </head>
 <body>
-    <nav class=" navbar-brand">
-        
-    </nav>
+    
+    
 
 
     <h1>Book Data</h1>
@@ -24,6 +23,7 @@
            
         </tbody>
     </table>
+    <p id="myParagraph"> Helooooo</p>
     
     
 
@@ -39,6 +39,68 @@
         </div>
     </nav>
 
+    <!-- Bootstrap modal-->
+    <div class="modal" tabindex="-1" id="Modal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--bootstrap grid-->
+                <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <img src="image" class="img-fluid" alt="Responsive image">
+                      </div>
+                      <div class="col-sm">
+                        <div class="title">
+                            <h3>Book Title</h3>
+                        </div>
+                        <div class="author">
+                            <p>author</p>
+                        </div>
+                        <div class="description" id="description">
+                            <p> No description</p>
+                        </div>
+                        
+                        <div class="row">  
+        
+                            <div class="col-sm">
+                                <div class="rating">
+                                    <p>rating</p>
+                                 </div>
+                                <div class="isbn_isbn13">
+                                    <p>isbn_isbn13</p>
+                                </div>
+                                <div class="pages">
+                                    <p>pages</p>
+                                </div>
+                                <div class="year">
+                                    <p>year</p>
+                                </div>
+                                <div class="publisher">
+                                    <p>publisher</p>
+                                </div>
+                                <div class="isbn_isbn13">
+                                    <p>isbn_isbn13</p>
+                                </div>
+
+                            </div>
+            
+                
+                    </div>
+                  </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
    
         
     
@@ -47,5 +109,6 @@
     <script src="javascript.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

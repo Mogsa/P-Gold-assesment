@@ -1,6 +1,6 @@
 // JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Your code here...
+    // will have to add paginatiion later
 
 document.getElementById('searchButton').addEventListener('click', function(e) {
     e.preventDefault();
@@ -146,7 +146,7 @@ document.getElementById('searchButton').addEventListener('click', function(e) {
                     myModal.show();
                     
         
-                    // https://openlibrary.org/isbn/${isbn}
+                    
 
 
 

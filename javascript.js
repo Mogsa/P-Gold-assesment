@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchBar = document.getElementById('searchBar');
         const searchString = searchBar.value.toLowerCase();
         
-
+            // test 
         
         // Fetch data from your CSV file
         fetch('books.csv') 
@@ -21,11 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rows = data.split('\n');
                 headers = rows[0].split(',');
 
-                // Filter rows based on search string
-                const items =rows.slice
+        
 
                 // Filter rows based on search string
                 items = rows.filter(row => row.toLowerCase().includes(searchString));
+
+
 
                 // Display filtered data
                 displayPage(1,headers);
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         function displayPage(pageNumber, headers) {
-            const start =(pageNumber - 1) * itemsPerPage;
+            const start = (pageNumber - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const pageItems =items.slice(start, end);
 
@@ -189,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         })
-.catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error:', error));
 
 
     //reset

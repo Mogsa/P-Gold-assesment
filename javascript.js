@@ -5,13 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentItems = [];
 
     var headers = [];
+    let items = [];
 
     document.getElementById('searchButton').addEventListener('click', function(e) {
         e.preventDefault();
         const searchBar = document.getElementById('searchBar');
         const searchString = searchBar.value.toLowerCase();
         
-            // test 
+            
         
         // Fetch data from your CSV file
         fetch('books.csv') 
@@ -21,10 +22,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rows = data.split('\n');
                 headers = rows[0].split(',');
 
+                // rows to object
+                
+
+                items = rows.slice(1).map(row => {
+                    const values = row.split(',');
+                    let item = {};
+                    headers.forEach((header, i) => {
+                        item[header] = values[i];
+                    });
+                    return item;
+                });
+
         
 
                 // Filter rows based on search string
-                items = rows.filter(row => row.toLowerCase().includes(searchString));
+                items = items.filter(item =>
+                    item.title && 
+                    typeof item.title === 'string' &&
+                    item.title.toLowerCase().includes(searchString) 
+                    );
+                
+                const filterButton = document.getElementById('filterButton');
+
+                filterButton.addEventListener('click', () => {
+                    let ratingThreshold = document.getElementById('ratingThreshold').value;
+                        
+
+
+                });
 
 
 
@@ -44,12 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Display filtered data
             const tableBody = document.querySelector('#bookTable tbody');
             tableBody.innerHTML = ''; // Clear previous results
-            pageItems.forEach(row => {
-                const rowData = row.split(',');
-                const item = headers.reduce((obj, header, i) => {
-                    obj[header] = rowData[i];
-                    return obj;
-                }, {});
+            pageItems.forEach(item => {
+                
+                
 
                     // Create a new table row
                     const tr = document.createElement('tr');
@@ -170,8 +193,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
                     });
-
                 });
+
+                
             }
                 // Add event listeners to your "Next" and "Previous" buttons
             document.getElementById('nextButton').addEventListener('click', function() {

@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var headers = [];
     let items = [];
 
+    
+
     document.getElementById('searchButton').addEventListener('click', function(e) {
         e.preventDefault();
         const searchBar = document.getElementById('searchBar');
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
             
         
-        // Fetch data from your CSV file
+        // Fetch data from CSV file
         fetch('books.csv') 
             .then(response => response.text())
             .then(data => {
@@ -23,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers = rows[0].split(',');
 
                 // rows to object
-                
 
                 items = rows.slice(1).map(row => {
                     const values = row.split(',');
@@ -45,12 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const filterButton = document.getElementById('filterButton');
 
-                filterButton.addEventListener('click', () => {
-                    let ratingThreshold = document.getElementById('ratingThreshold').value;
-                        
-
-
-                });
+                
 
 
 
@@ -58,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayPage(1,headers);
             });
         });
+
+        
 
         function displayPage(pageNumber, headers) {
             const start = (pageNumber - 1) * itemsPerPage;
@@ -83,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     const img = document.createElement('img');
                     img.src = coverImage;
                     img.classList.add('img-thumbnail')
+                    img.alt = item['title'];
+                    img.style.width = '150px';
+                    
                     const tdCover = document.createElement('td');
                     tdCover.appendChild(img);
                     tr.appendChild(tdCover);
@@ -103,28 +104,54 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Display author
                     const br1 = document.createElement('br');
                     const span1 = document.createElement('span');
-                    span1.textContent = `by ${item['authors']}`;
+                    span1.textContent = `by: ${item['authors']}`;
                     tdTitle.appendChild(br1);
                     tdTitle.appendChild(span1);
+
+
                     
                     // Display ratings to work on later
-                    /*
-                    const br2 = document.createElement('br');
-                    const span2 = document.createElement('span');
-                    const  ratingsCount = item['ratings_count'];
-                    for (let i = 0; i < ratingsCount; i++) {
-                        span2.textContent += '★';
-                    }
-                    tdTitle.appendChild(br2);
-                    tdTitle.appendChild(span2);
-                    */
+                
+                    // const spanRating = document.createElement('span');
+                    // spanRating.id = 'starsContainer';
+                    // spanRating.classList.add('rating');
+                    // let rating= item['ratings_count'];
+                    // spanRating.textContent = '';
 
+                    // let stars = '';
+                    
+                    //     let intP = Math.floor(rating);
+                    //     let decP = rating - intP;
+                
+                
+                    //     //display stars
+                    //     for (let i=0; i< intP; i++){
+                    //         stars += '<span class="star"><img src="star.10.png></span>';
+                                                      
+                    //     }
+                    //     //display half star
+                    //     if (decP <= 0.5){
+                    //         stars += '<span class="star"><img src="star.3.png></span>';
+                    //     }else{
+                    //         stars += '<span class="star"><img src="star.6.png></span>';
+                    //     }
+                    //     //display empty stars
+                    //     for (let i=0; i< 5 - intP - 1; i++){
+                    //         stars += '<span class="star"><img src="star.0.png></span>';
+                    //     }
+                    
+                    // tdTitle.appendChild(spanRating);
+                
+                               
+
+                    const br3 = document.createElement('br');
                     const button = document.createElement('button');
                     button.type = 'button';
                     button.className = 'btn btn-primary';
                     button.dataset.toggle = 'modal';
                     button.dataset.target = '#Modal';
-                    button.textContent = 'Open Modal';
+                    button.textContent = 'more info ';
+                    tdTitle.appendChild(br3);
                     tdTitle.appendChild(button);
                     
                     
@@ -136,18 +163,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         var myModal = new bootstrap.Modal(document.getElementById('Modal'), {})
                         
 
-                        //creat the title of the modal
+                        //create the title of the modal
                         const modal = document.querySelector('#Modal');
                         const modalTitle = modal.querySelector('.modal-dialog .modal-content .modal-header .modal-title');
                         
                         modalTitle.textContent = item['title'];
 
 
-                        //creat the image of the modal
+                        //create the image of the modal
                         const isbn = item['isbn13'];
                         const coverImage = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
                         const img = document.querySelector('.modal-dialog .modal-content .modal-body img');                    
-                        img.src = coverImage;//change image atribute
+                        img.src = coverImage;
                         //insert book title 
                         const bookTitle = document.querySelector(' .modal-dialog .modal-content .container .row .col-sm h3');
                         bookTitle.textContent = item['title'];
@@ -188,16 +215,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         myModal.show();
                         
             
-                        
-
-
 
                     });
                 });
 
                 
             }
-                // Add event listeners to your "Next" and "Previous" buttons
+            
+
+
+
+                // Add event listeners to "Next" and "Previous" buttons
             document.getElementById('nextButton').addEventListener('click', function() {
                 if (currentPage < Math.ceil(items.length / itemsPerPage)) {
                     currentPage++;
@@ -211,6 +239,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     displayPage(currentPage,headers);
                 }
             });
+
+
 
 
         })

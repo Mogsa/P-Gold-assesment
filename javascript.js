@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var headers = [];
     let items = [];
 
+
     function sortItems(type = 'desc', criteria) {
         return items.sort((a, b) => {
             switch (type) {
@@ -56,6 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     return item;
                 });
+
+                // criteria for how well received a book is 
+                // for (let i = 0; i < items.length; i++) {
+                //     items[i]['bestness'] = parseInt(items[i]['ratings_count']) * parseInt(items[i]['text_reviews_count']);
+                // }
+                // console.log(items[5]['bestness']);
+                // console.log(items[6]['bestness']);
 
         
 
@@ -135,9 +143,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     tdTitle.appendChild(br1);
                     tdTitle.appendChild(span1);
 
-                    // Display rating
+                    
 
-                    // dispaly 
+                    // Display rating & rating count
+
+                    const br2 = document.createElement('br');
+                    const span2 = document.createElement('span');
+                    span2.textContent = `rating: ${item['ratings_count']}     `;
+                    const span3 = document.createElement('span');
+                    span3.textContent = `rating count: ${item['text_reviews_count']}`;
+                    tdTitle.appendChild(br2);
+                    tdTitle.appendChild(span2);
+                    tdTitle.appendChild(span3);
+
+                    // display publication year
+                    
+
+                    
 
 
 
@@ -177,14 +199,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                                
 
-                    const br3 = document.createElement('br');
+                    const br4 = document.createElement('br');
                     const button = document.createElement('button');
                     button.type = 'button';
                     button.className = 'btn btn-primary';
                     button.dataset.toggle = 'modal';
                     button.dataset.target = '#Modal';
                     button.textContent = 'more info ';
-                    tdTitle.appendChild(br3);
+                    tdTitle.appendChild(br4);
                     tdTitle.appendChild(button);
                     
                     

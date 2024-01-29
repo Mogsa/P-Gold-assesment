@@ -7,6 +7,28 @@ document.addEventListener('DOMContentLoaded', function() {
     var headers = [];
     let items = [];
 
+    function sortItems(type = 'desc', criteria) {
+        return items.sort((a, b) => {
+            switch (type) {
+                case 'asc':
+                    if (a[criteria] < b[criteria]) {
+                        return -1;
+                    }
+                    if (a[criteria] > b[criteria]) {
+                        return 1;
+                    }
+                    return 0;
+                default:
+                    if (a[criteria] > b[criteria]) {
+                        return -1;
+                    }
+                    if (a[criteria] < b[criteria]) {
+                        return 1;
+                    }
+                    return 0;
+            }
+        }); 
+    }
     
 
     document.getElementById('searchButton').addEventListener('click', function(e) {
@@ -42,11 +64,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.title && 
                     typeof item.title === 'string' &&
                     item.title.toLowerCase().includes(searchString) 
-                    );
+                );
                 
+                
+
                 const filterButton = document.getElementById('filterButton');
 
-                
+                // filterButton.addEventListener('click', () => {
+                //     let ratingThreshold = document.getElementById('ratingThreshold').value;
+                    
+                // });
 
 
 
@@ -107,6 +134,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     span1.textContent = `by: ${item['authors']}`;
                     tdTitle.appendChild(br1);
                     tdTitle.appendChild(span1);
+
+                    // Display rating
+
+                    // dispaly 
+
+
 
 
                     
@@ -238,6 +271,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentPage--;
                     displayPage(currentPage,headers);
                 }
+            });
+
+            document.getElementById('sort-asc-btn').addEventListener('click', function (e) {
+                console.log('asc');
             });
 
 

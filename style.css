@@ -1,11 +1,19 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+
+    background-color: #1c0285;
 }
 
 h1 {
     color: blue;
-    font-size: 30px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+h3 {
+    color: blue;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -23,3 +31,11 @@ th, td {
     padding: 10px;
     text-align: left;
 }
+
+.star-image {
+    width: 20px;
+    height: 20px;
+}
+
+
+
